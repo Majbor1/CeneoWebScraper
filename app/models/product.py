@@ -60,11 +60,11 @@ class Product:
         return self
 
     def calculate_stats(self):
-        reviews = pd.DataFrame.from_dict(self.reviews_to_dict)
-        self.stats["reviews_count"] = reviews.shape[0]
-        self.stats["pros_count"] = reviews.pros.astype(bool).sum()
-        self.stats["cons_count"] = reviews.cons.astype(bool).sum()
-        self.stats["pros_cons_count"] = reviews.apply(lambda r: bool(r.pros) and bool(r.cons), axis=1).sum()
+        reviews = pd.DataFrame.from_dict(self.reviews_to_dict())
+        self.stats["reviews_count"] = int(reviews.shape[0])
+        self.stats["pros_count"] = int(reviews.pros.astype(bool).sum())
+        self.stats["cons_count"] = int(reviews.cons.astype(bool).sum())
+        self.stats["pros_cons_count"] = int(reviews.apply(lambda r: bool(r.pros) and bool(r.cons), axis=1).sum())
         self.stats["avg_stars"] = round(reviews.stars.mean(), 2)
         return self
 
