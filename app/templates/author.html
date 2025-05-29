@@ -1,5 +1,80 @@
 {% extends 'base.html' %}
-{% block title %} Ekstrakcja opinii {% endblock %}
+{% block title %} Autor {% endblock %}
 {% block content %}
+
+<style>
+.zoomable {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.zoomed {
+  transform: scale(1.5);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".zoomable").forEach(function (el) {
+    el.addEventListener("click", function () {
+      el.classList.toggle("zoomed");
+    });
+  });
+});
+</script>
+
+
+<table>
+    <tr>
+        <td>To moje imie</td>
+        <td>-></td>
+        <td class="zoomable"><span style="color: #ff6400; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Marcin</span></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To moje nazwisko</td>
+        <td>-></td>
+        <td class="zoomable"><span style="color: #ff6400; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Majborski</span></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To moje miasto</td>
+        <td>-></td>
+        <td class="zoomable">
+            <span style="color: #ff6400; font-family: 'Times New Roman', Times, serif; font-weight: bold;">Głogów</span>
+        </td>
+        <td>-></td>
+        <td class="zoomable"><img class="zoomable" width="160" height="120" src="https://www.flyrecord.pl/wp-content/uploads/polska-z-lotu-ptaka/glogow/0D0A0552.jpg" alt="gloguf"></td>
+    </tr>
+    <tr>
+        <td>To moje hobby</td>
+        <td>-></td>
+        <td class="zoomable">
+            <img class="zoomable" width="160" height="120" src="https://biznes.wprost.pl/_thumb/e0/7a/2951cc1a6cbec46caa055321baa2.jpeg" alt="pifko">
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To też</td>
+        <td>-></td>
+        <td class="zoomable">
+            <img class="zoomable" width="160" height="120" src="https://motorblock.at/wp-content/uploads/2017/08/autowp.ru_fiat_multipla_uk-spec_22-1030x773.jpg" alt="samohud">
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>To moja ulubiona czcionka</td>
+        <td>-></td>
+        <td class="zoomable">
+            <span style="color: #ff6400; font-family: 'Times New Roman', Times, serif; font-weight: bold;">CZCIONKA</span>
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
 
 {% endblock %}

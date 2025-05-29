@@ -1,5 +1,67 @@
 {% extends 'base.html' %}
 {% block title %} {{product_id}} {% endblock %}
 {% block content %}
-
+<style>
+    .truncate-text {
+      max-width: 150px; /* ustaw szerokość kolumny */
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: normal;
+    }
+  </style>
+<table class="table table-striped table-bordered align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>ID recenzji</th>
+          <th>Autor</th>
+          <th>Rekomendacja</th>
+          <th>Ocena (gwiazdki)</th>
+          <th>Treść recenzji</th>
+          <th>Plusy</th>
+          <th>Minusy</th>
+          <th>Lajki</th>
+          <th>Dislajki</th>
+          <th>Data publikacji</th>
+          <th>Data zakupu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>15536811</td>
+          <td>Użytkownik Ceneo</td>
+          <td><span class="badge bg-success">Polecam</span></td>
+          <td><span class="badge bg-warning text-dark rounded-pill">5.0 ★</span></td>
+          <td class="truncate-text">Bajeczna gra. Karty dają milion możliwość, dodatki sprawiają, że można grać i grać.</td>
+          <td>
+            <ul class="mb-0 ps-3">
+              <li>fabuła</li>
+              <li>grywalność</li>
+              <li>jakość</li>
+              <li>prostota</li>
+            </ul>
+          </td>
+          <td>–</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2022-01-11 18:40:37</td>
+          <td>2022-01-06 10:35:29</td>
+        </tr>
+        <tr>
+          <td>18012393</td>
+          <td>w...0</td>
+          <td><span class="badge bg-success">Polecam</span></td>
+          <td><span class="badge bg-warning text-dark rounded-pill">5.0 ★</span></td>
+          <td class="truncate-text">Bardzo interesująca gra. Obawiałam się, że szybko się nią znudzimy, tymczasem siedzimy godzinami i dostarcza nam mnóstwa radości. Karty i sama gra są pięknie wydane już po dwóch dniach zamówiliśmy dodatkowe zestawy kart, zachwyceni grafiką i pomysłami artystów. Gra wydaje się banalna ale wcale taka nie jest!</td>
+          <td>–</td>
+          <td>–</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2023-10-18 09:34:28</td>
+          <td>2023-09-26 14:34:27</td>
+        </tr>
+      </tbody>
+    </table>
 {% endblock %}
