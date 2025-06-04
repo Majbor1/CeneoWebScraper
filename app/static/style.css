@@ -1,9 +1,35 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer{
+  margin: 20px;
+}
+
+section.container {
+    flex: 1;
+}
+
 h1 {
     color: #ff6400;
 }
 
+header h1, header h2 {
+    margin: 20px 0;
+}
+
+
+
 .badge.bg-ceneo {
-    background-color: #ff6400; /* jasny zielony */
+    background-color: #ff6400; /* jasny pomarańczowy */
     color: white; /* ciemny tekst */
     font-weight: 600;
   }

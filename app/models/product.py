@@ -30,6 +30,32 @@ class Product:
             "product_name": self.product_name,
             "stats": self.stats
         }
+    
+    def info_from_dict(self, info):
+        self.product_id = info['product_id']
+        self.product_name = info['product_name']
+        self.stats = info['stats']
+
+    def reviews_from_dict(self, reviews_list):
+        for review_dict in reviews_list:
+            review = Review()
+            review.form_dict(review_dict)
+            self.reviews.append(review)
+
+
+    def if_not_exists(self):
+        next_page = f"https://www.ceneo.pl/{self.product_id}#tab=reviews"
+        response = requests.get(next_page, headers=headers)
+        if response.status_code == 200:
+            page_dom = BeautifulSoup(response.text, "html.parser")
+            opinions_count = extract(page_dom, "a.product-review__link > span")
+            if opinions_count:
+                return False
+            else: 
+                return "Dla produktu o podanym kodzie nie ma jeszcze opinii"
+        else:
+            return "Produkt o podanym kodzie nie istnieje"
+        
 
     def extract_name(self):
         next_page = f"https://www.ceneo.pl/{self.product_id}#tab=reviews"

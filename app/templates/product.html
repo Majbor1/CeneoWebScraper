@@ -2,66 +2,121 @@
 {% block title %} {{product_id}} {% endblock %}
 {% block content %}
 <style>
-    .truncate-text {
-      max-width: 150px; /* ustaw szerokość kolumny */
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: normal;
-    }
-  </style>
+  .truncate-text {
+    max-width: 150px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    max-height: 150px;
+  }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="detailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detailsModalLabel">Szczegóły recenzji</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij"></button>
+      </div>
+      <div class="modal-body" id="modalContent">
+        <!-- Tutaj zostaną wstawione szczegóły -->
+      </div>
+      <div class="modal-footer">
+        <button style="background-color: #ff6400" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zamknij</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <table class="table table-striped table-bordered align-middle">
-      <thead class="table-light">
-        <tr>
-          <th>ID recenzji</th>
-          <th>Autor</th>
-          <th>Rekomendacja</th>
-          <th>Ocena (gwiazdki)</th>
-          <th>Treść recenzji</th>
-          <th>Plusy</th>
-          <th>Minusy</th>
-          <th>Lajki</th>
-          <th>Dislajki</th>
-          <th>Data publikacji</th>
-          <th>Data zakupu</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>15536811</td>
-          <td>Użytkownik Ceneo</td>
-          <td><span class="badge bg-success">Polecam</span></td>
-          <td><span class="badge bg-warning text-dark rounded-pill">5.0 ★</span></td>
-          <td class="truncate-text">Bajeczna gra. Karty dają milion możliwość, dodatki sprawiają, że można grać i grać.</td>
-          <td>
-            <ul class="mb-0 ps-3">
-              <li>fabuła</li>
-              <li>grywalność</li>
-              <li>jakość</li>
-              <li>prostota</li>
-            </ul>
-          </td>
-          <td>–</td>
-          <td>1</td>
-          <td>0</td>
-          <td>2022-01-11 18:40:37</td>
-          <td>2022-01-06 10:35:29</td>
-        </tr>
-        <tr>
-          <td>18012393</td>
-          <td>w...0</td>
-          <td><span class="badge bg-success">Polecam</span></td>
-          <td><span class="badge bg-warning text-dark rounded-pill">5.0 ★</span></td>
-          <td class="truncate-text">Bardzo interesująca gra. Obawiałam się, że szybko się nią znudzimy, tymczasem siedzimy godzinami i dostarcza nam mnóstwa radości. Karty i sama gra są pięknie wydane już po dwóch dniach zamówiliśmy dodatkowe zestawy kart, zachwyceni grafiką i pomysłami artystów. Gra wydaje się banalna ale wcale taka nie jest!</td>
-          <td>–</td>
-          <td>–</td>
-          <td>1</td>
-          <td>0</td>
-          <td>2023-10-18 09:34:28</td>
-          <td>2023-09-26 14:34:27</td>
-        </tr>
-      </tbody>
-    </table>
+  <thead class="table-light">
+    <tr>
+      <th>ID recenzji</th>
+      <th>Autor</th>
+      <th>Rekomendacja</th>
+      <th>Ocena</th>
+      <th>Treść recenzji</th>
+      <th>Plusy</th>
+      <th>Minusy</th>
+      <th>Lajki</th>
+      <th>Dislajki</th>
+      <th>Data publikacji</th>
+      <th>Data zakupu</th>
+      <th>Szczegóły</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>15536811</td>
+      <td>Użytkownik Ceneo</td>
+      <td><span class="badge bg-success">Polecam</span></td>
+      <td><span class="badge bg-warning text-dark rounded-pill">5.0 ★</span></td>
+      <td class="truncate-text">Bajeczna gra. Karty dają milion możliwość, dodatki sprawiają, że można grać i grać.</td>
+      <td>
+        <ul class="mb-0 ps-3">
+          <li>fabuła</li>
+          <li>grywalność</li>
+          <li>jakość</li>
+          <li>prostota</li>
+        </ul>
+      </td>
+      <td>–</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2022-01-11 18:40:37</td>
+      <td>2022-01-06 10:35:29</td>
+      <td><button style="background-color: #ff6400" class="btn btn-primary btn-sm" onclick="showDetails(this)">Szczegóły</button></td>
+    </tr>
+    <tr>
+      <td>18012393</td>
+      <td>w...0</td>
+      <td><span class="badge bg-success">Polecam</span></td>
+      <td><span class="badge bg-warning text-dark rounded-pill">5.0 ★</span></td>
+      <td class="truncate-text">Bardzo interesująca gra. Obawiałam się, że szybko się nią znudzimy, tymczasem siedzimy godzinami...</td>
+      <td>–</td>
+      <td>–</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2023-10-18 09:34:28</td>
+      <td>2023-09-26 14:34:27</td>
+      <td><button style="background-color: #ff6400" class="btn btn-primary btn-sm" onclick="showDetails(this)">Szczegóły</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<script>
+  function showDetails(button) {
+    const row = button.closest('tr');
+    const cells = row.querySelectorAll('td');
+
+    const headers = [
+      '<i class="bi bi-hash"></i> ID recenzji',
+      '<i class="bi bi-person"></i> Autor',
+      '<i class="bi bi-hand-thumbs-up"></i> Rekomendacja',
+      '<i class="bi bi-star-fill text-warning"></i> Ocena',
+      '<i class="bi bi-chat-left-text"></i> Treść recenzji',
+      '<i class="bi bi-plus-circle"></i> Plusy',
+      '<i class="bi bi-dash-circle"></i> Minusy',
+      '<i class="bi bi-hand-thumbs-up-fill"></i> Likes',
+      '<i class="bi bi-hand-thumbs-down-fill"></i> Dislikes',
+      '<i class="bi bi-calendar-event"></i> Data publikacji',
+      '<i class="bi bi-calendar-check"></i> Data zakupu'
+    ];
+
+    let content = '<ul class="list-group">';
+    cells.forEach((cell, index) => {
+      if (index < headers.length) {
+        content += `<li class="list-group-item"><strong>${headers[index]}:</strong> ${cell.innerHTML}</li>`;
+      }
+    });
+    content += '</ul>';
+
+    document.getElementById('modalContent').innerHTML = content;
+    const modal = new bootstrap.Modal(document.getElementById('detailsModal'));
+    modal.show();
+  }
+</script>
 {% endblock %}
